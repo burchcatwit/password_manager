@@ -2,6 +2,7 @@ import logo from './icon.png';
 import './App.css';
 import { Link } from "react-router-dom";
 import React from "react";
+import { useState } from "react";
 import Checkbox from "./Checkbox";
 import { createPassword } from "./createPassword";
 
@@ -27,27 +28,42 @@ export function NavHeader() {
 }
 
 
+export class PasswordList extends React.Component {
+  state = {
+    passwords: [],
+  };
+  
+  constructor(props) {
+    super(props);
+   
+  }
 
+  componentDidMount() {
+    this._fetchPromise = 
+    fetch("http://localhost:5000/api/passwords")
+      .then(response => response.json())
+      .then(passwords => { console.log(passwords); this.setState(prevState => ({ passwords: passwords })) });
+  }
 
-export function PasswordList() {
-  var passwords = [
-    {password: "asdfasdf", site: "google.com"},
-    {password: "asdofuiqpiuwe", site: "netflix.com"},
-    {password: "pqweiii", site: "bestbuy.com"},
-  ]
-  return (
-    <main className = "content">
-      <h2>Password List</h2>
-      { passwords.map((p, i) => <p key={i.toString()}>{ p.site }: {p.password} </p>) }
-    </main>
-  )
+  render() {
+    return (
+      <main className = "content">
+        <h2>Password List</h2>
+        { 
+          this.state.passwords.map((p, i) => 
+            <div key={i.toString()}>
+              <p>{ p.siteName }:</p> 
+              <p> &nbsp;&nbsp;&nbsp;&nbsp; { p.siteUsername } : { p.sitePssword } </p> 
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { p.OtherNotes }</p>
+            </div>
+          )
+        }
+      </main>
+    )
+  }
 }
 
-
-//This + Checkbox.js partly from http://react.tips/checkboxes-in-react-16/
-
 const OPTIONS = ["Uppercase", "Symbols", "Numbers"];
-
 export class PasswordGenerator extends React.Component {
 
   state = {
@@ -60,7 +76,6 @@ export class PasswordGenerator extends React.Component {
 
   selectAllCheckboxes = isSelected => {
     Object.keys(this.state.checkboxes).forEach(checkbox => {
-      // BONUS: Can you explain why we pass updater function to setState instead of an object?
       this.setState(prevState => ({
         checkboxes: {
           ...prevState.checkboxes,
@@ -126,19 +141,6 @@ export function _PasswordGenerator() {
     </main>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function App() {
   return (

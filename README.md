@@ -1,16 +1,28 @@
 # Running the site
 
--Make sure that your current directory is password-manager
+-Run "npm install" in the root directory
 
--Run npm start
+-Add the link to the database in index.js
 
--Go to [http://localhost:3000](http://localhost:3000) and the site should be viewable.
+## Running the backend
+
+- Make sure that your current directory is "backend"
+
+- Run "node index.js"
+
+## Running the frontend
+
+- Make sure that your current directory is root
+
+- Run "npm start"
+
+- Go to [http://localhost:3000](http://localhost:3000) and the site should be viewable.
 
 
 ### Features
 
--A landing page that can be customized
+- A landing page that can be customized
 
--A page to view all website information associated with that account
+- A page to view all website information associated with that account
 
--A page to generate new secure passwords
+- A page to generate new secure passwords
