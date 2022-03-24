@@ -1,6 +1,9 @@
 # Running the site
 
+-First make sure that [https://nodejs.org/en/](node.js) is installed
+
 -Run "npm install" in the root directory
+  -And in the backend directory
 
 -Add the link to the database in index.js
 
@@ -26,3 +29,16 @@
 - A page to view all website information associated with that account
 
 - A page to generate new secure passwords
+
+
+# Other Files
+
+## Add a single peice of data
+
+- Run "node addonedata.js"
+
+- Fill out the data as asked
+
+## Add new random data
+
+- Run "node randomdatapop.js"
