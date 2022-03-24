@@ -1,11 +1,11 @@
 # Running the site
 
--First make sure that [https://nodejs.org/en/](node.js) is installed
+- First make sure that [https://nodejs.org/en/](node.js) is installed
 
--Run "npm install" in the root directory
-  -And in the backend directory
+- Run "npm install" in the root directory
+  - And in the backend directory
 
--Add the link to the database in index.js
+- Add the link to the database in index.js
 
 ## Running the backend
 
