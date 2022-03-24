@@ -52,8 +52,8 @@ export class PasswordList extends React.Component {
         { 
           this.state.passwords.map((p, i) => 
             <div key={i.toString()}>
-              <p>{ p.siteName }:</p> 
-              <p> &nbsp;&nbsp;&nbsp;&nbsp; { p.siteUsername } : { p.sitePssword } </p> 
+              <p>{(i + 1).toString()} { p.siteName }:</p> 
+              <p> &nbsp;&nbsp;&nbsp;&nbsp; { p.siteUsername } : { p.sitePassword } </p> 
               <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { p.OtherNotes }</p>
             </div>
           )
