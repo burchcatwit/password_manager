@@ -1,10 +1,12 @@
-import logo from './icon.png';
+/*
+import logo from './project_logo.png';
 import './App.css';
 import { Link } from "react-router-dom";
 import React from "react";
-import { useState } from "react";
+//import { useState } from "react";
 import Checkbox from "./Checkbox";
 import { createPassword } from "./createPassword";
+import Header from './header.js';
 
 
 
@@ -18,7 +20,8 @@ export function NavHeader() {
         </a>
         <div className="inner">
           <ul className="nav-links">
-            <Link to="/password-list">My Passwords</Link>
+            <Link to="/header">Log In</Link>
+            <Link to="/password-list">Get S.S</Link>
             <Link to="/password-generator">Password Generator</Link>
           </ul>
         </div>
@@ -142,13 +145,32 @@ export function _PasswordGenerator() {
   )
 }
 
+f
+
+export default App;
+*/
+
+
+import React, { useEffect } from "react";
+import "./App.css";
+import Header from "./Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+
+
 function App() {
-  return (
-    <main className = "content">
-      <h2>Password Manager</h2>
-      <p>Welcome to the most secure password manager!</p>
-    </main>
-  );
+return (
+  <div className="app">
+    <Router>
+      <Switch>
+        <Route path="/">
+          <Header />
+          <Home />ad
+        </Route>
+      </Switch>
+    </Router>
+  </div>
+);
 }
 
 export default App;
