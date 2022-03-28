@@ -1,0 +1,56 @@
+body{
+  background-color: hsl(220, 13%, 20%);
+}
+
+.App-logo {
+  height: 4vmin;
+  pointer-events: none;
+}
+
+.container {
+  
+  background-color: hsl(220, 13%, 10%);
+  min-height: 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(8px + 1vmin);
+  color: white;
+  
+}
+
+.content{
+  margin-right: auto;
+  margin-left: 20em;
+  color: white;
+  
+}
+
+.rows{
+  margin: 10px 0px
+}
+
+.nav-links{
+  margin-right: 15em;
+  margin-left: auto;
+}
+
+.nav-links * {
+  list-style-type: none;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #e6e6e6;
+}
+
+a:visited {
+  color: #e6e6e6;
+}
+
+#image{
+  margin-right: auto;
+  margin-left: 15em;
+}
