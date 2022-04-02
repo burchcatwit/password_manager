@@ -9,7 +9,7 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 async function seedDB() {
-    //Insert your "secret link" here to access mongodb
+    // Connection URL
     const uri = "";
 
     const client = new MongoClient(uri, {

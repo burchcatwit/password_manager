@@ -1,10 +1,19 @@
 import logo from './icon.png';
+import copy_logo from './baseline_content_copy_white_24dp.png';
+import edit_logo from './baseline_edit_white_24dp.png';
+import less_logo from './baseline_expand_less_white_24dp.png';
+import more_logo from './baseline_expand_more_white_24dp.png';
+
+
 import './App.css';
 import { Link } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
 import Checkbox from "./Checkbox";
 import { createPassword } from "./createPassword";
+import Collapsible from 'react-collapsible';
+import copy from "copy-to-clipboard";  
+import { Container } from './Container';
 
 
 
@@ -13,7 +22,7 @@ export function NavHeader() {
     
     <nav className="nav">
       <div className="container">
-        <a href="http://localhost:3000" id="image">
+        <a href="/" id="image">
               <img src={logo} className="App-logo" alt="logo" />
         </a>
         <div className="inner">
@@ -28,33 +37,199 @@ export function NavHeader() {
 }
 
 
+function CollapsibleLable(props) {
+  return (
+    <div style={{ display: 'flex'}}>
+      <span>{props.siteName}</span>
+      <img src={props.logo}/>
+    </div>
+  )
+}
+
+
+function PasswordEntery(props) {
+  let [editingUsername, setEditingUsername] = useState(false);
+  let [editingPassword, setEditingPassword] = useState(false);
+  let [editingNotes, setEditingNotes] = useState(false);
+  let p = props.password;
+  const onEditUsername = props.onEditUsername;
+  const onEditPassword = props.onEditPassword;
+  const onEditNotes = props.onEditNotes;
+  return (
+    <div class="info-grid" style={{ display: 'grid', gridTemplate: 'max-content max-content max-content / 800px 24px 24px'}}>       
+      {editingUsername && <input type="text" value={p.siteUsername} onChange={(e) => onEditUsername(e.target.value)}></input> || <span>{"Username: " +  p.siteUsername }</span> }
+          <a href="#" onClick={() => setEditingUsername(!editingUsername)}><img src={edit_logo} className="Function-button"/></a> 
+          <a href="#" onClick={() => copy(p.siteUsername)}> <img src={copy_logo} className="Function-button"/></a>
+
+      {editingPassword && <input type="text" value={p.sitePassword} onChange={(e) => onEditPassword(e.target.value)}></input> || <span>{"Password: " + p.sitePassword }</span> }
+          <a href="#" onClick={() => setEditingPassword(!editingPassword)}> <img src={edit_logo} className="Function-button"/> </a>
+          <a href="#" onClick={() => copy(p.sitePassword)}> <img src={copy_logo} className="Function-button"/> </a>
+
+      {editingNotes && <textarea value={p.OtherNotes} onChange={(e) => onEditNotes(e.target.value)}></textarea> || <span>Other Notes: {p.OtherNotes.split("\n").map(line => <>{line}<br/></>) }</span> }
+        <a href="#" onClick={() => setEditingNotes(!editingNotes)}> <img src={edit_logo} className="Function-button"/> </a>
+        <a href="#" onClick={() => copy(p.OtherNotes)}> <img src={copy_logo} className="Function-button"/> </a>
+    </div>
+  )
+}
+
+
+function updateData(password){
+  fetch('http://localhost:5000/api/passwords', {
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(password)
+  })
+}
+
+function deleteData(data){
+  fetch('http://localhost:5000/api/passwords', {
+    method: 'DELETE', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+}
+
+async function importData(data) {
+  await fetch('http://localhost:5000/api/import', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
+}
+
+
 export class PasswordList extends React.Component {
   state = {
     passwords: [],
+    downloadLink: '',
+    uploadLink: '',
   };
-  
+
   constructor(props) {
     super(props);
    
   }
 
+  triggerText = 'New Password';
+  onSubmit = (event) => {
+    let entry = {
+      accountUsername: "Alexane_Schneider",
+      siteUsername: event.target.name.value,
+      sitePassword: event.target.password.value,
+      OtherNotes: event.target.otherNotes.value,
+      siteName: event.target.website.value,
+    }
+    updateData(entry);
+  };
+  
+  updatePasswordUrl(passwords) {
+    const data = new Blob([JSON.stringify(passwords)], { type: 'text/plain' })
+    
+    if (this.state.downloadLink !== '') {
+      window.URL.revokeObjectURL(this.state.downloadLink);
+    } 
+
+    this.setState({ downloadLink: window.URL.createObjectURL(data) })
+  }
+
+  async fetchPasswords() {
+    let response = await fetch("http://localhost:5000/api/passwords")
+    let passwords = await response.json()
+    
+    this.setState({ passwords: passwords })
+    this.updatePasswordUrl(passwords)
+  }
+
   componentDidMount() {
-    this._fetchPromise = 
-    fetch("http://localhost:5000/api/passwords")
-      .then(response => response.json())
-      .then(passwords => { console.log(passwords); this.setState(prevState => ({ passwords: passwords })) });
+    this.fetchPasswords()
+  }
+
+  editUsername(id, newUsername) {
+    // Smear all the values from the old entry while replaces the password value with newPassword {...object, element to replace: replacement}
+    const password = { ...this.state.passwords[id], siteUsername: newUsername };
+    const passwords = Array.from(this.state.passwords);
+    passwords[id] = password;
+    this.setState({ passwords: passwords });
+    this.updatePasswordUrl(passwords);
+  }
+
+  editPassword(id, newPassword) {
+    // Smear all the values from the old entry while replaces the password value with newPassword {...object, element to replace: replacement}
+    const password = { ...this.state.passwords[id], sitePassword: newPassword };
+    const passwords = Array.from(this.state.passwords);
+    passwords[id] = password;
+    this.setState({ passwords: passwords });
+    this.updatePasswordUrl(passwords);
+  }
+
+  editNotes(id, newNotes) {
+    // Smear all the values from the old entry while replaces the password value with newPassword {...object, element to replace: replacement}
+    const password = { ...this.state.passwords[id], OtherNotes: newNotes };
+    const passwords = Array.from(this.state.passwords);
+    passwords[id] = password;
+    this.setState({ passwords: passwords });
+    this.updatePasswordUrl(passwords);
+  }
+
+  async importPasswords(file) {
+    let text = await file.text()
+    let passwords = JSON.parse(text)
+    await importData(passwords);
+    await this.fetchPasswords();
   }
 
   render() {
     return (
       <main className = "content">
-        <h2>Password List</h2>
+        <h2>
+          <span>Password List</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a download="passwords.txt" href={this.state.downloadLink}> Export </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <Container triggerText={this.triggerText} onSubmit={this.onSubmit} />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div> Import <input type="file" name = 'import' onChange={ e => this.importPasswords(e.target.files[0]) }></input> </div>
+        </h2>
         { 
           this.state.passwords.map((p, i) => 
             <div key={i.toString()}>
-              <p>{(i + 1).toString()} { p.siteName }:</p> 
-              <p> &nbsp;&nbsp;&nbsp;&nbsp; { p.siteUsername } : { p.sitePassword } </p> 
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { p.OtherNotes }</p>
+              
+              <Collapsible 
+                  trigger={<CollapsibleLable siteName={p.siteName} logo={more_logo}/>}
+                  triggerWhenOpen={<CollapsibleLable siteName={p.siteName} logo={less_logo}/>}
+                  transitionTime={120}
+              >
+                <hr/>
+                <PasswordEntery 
+                  password={p}
+                  onEditUsername={ (newUsername) => this.editUsername(i, newUsername) }
+                  onEditPassword={ (newPassword) => this.editPassword(i, newPassword) }
+                  onEditNotes={ (newNotes) => this.editNotes(i, newNotes) }
+                />
+                {/* Button should not be shown unless the edit button is clicked */}
+                <div>
+                  <button onClick={() => updateData(p)}>
+                    Update
+                  </button>
+                  <button onClick = {
+                    () => {
+                      deleteData(p); 
+                      this.setState( _ => {
+                        return { passwords: this.state.passwords.filter((_, j) => j !== i) }
+                      });
+                    }
+                  }>
+                    Delete
+                  </button>
+                </div>
+              </Collapsible>
+              <hr/>
             </div>
           )
         }
