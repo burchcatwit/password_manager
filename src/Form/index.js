@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPassword } from "../createPassword";
 
 export const Form = ({ onSubmit }) => {
   return (
@@ -26,6 +27,7 @@ export const Form = ({ onSubmit }) => {
           className="form-control"
           id="password"
           placeholder="***************"
+	  defaultValue={createPassword(15, true, true, true)}
         />
       </div>
       <div className="form-group">
