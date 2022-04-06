@@ -8,15 +8,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <NavHeader/>
-      <Routes>
-        
-        <Route path="/" element={<App/>} />
-        <Route path="password-list" element={<PasswordList/>} />
-        <Route path="password-generator" element={<PasswordGenerator/>} />
-      </Routes>
-    </BrowserRouter>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createPassword } from "../createPassword";
+import { createPassword } from "../passwordGenerators/createPassword";
 
 export const Form = ({ onSubmit }) => {
   return (

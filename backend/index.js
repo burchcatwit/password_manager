@@ -1,10 +1,20 @@
 
 //Insert your "secret link" here to access mongodb
-const uri = "";
+const uri = "mongodb+srv://burchy99:%2AJL0hn36%23%2AgC@passmanager.lkwxg.mongodb.net";
 const MongoClient = require("mongodb").MongoClient;
 const client = new MongoClient(uri, {
     useNewUrlParser: true,
 });
+
+MongoClient.connect(/* ... */)
+  .then(client => {
+    // ...
+    const db = client.db('PassManager')
+
+    const AccountCreation = db.collection('UserInformation')
+
+    // ...
+  })
 
 // For backend and express
 const express = require('express');
@@ -58,4 +68,14 @@ app.post("/api/import", async (req, resp) => {
     }
     resp.send({ success: true });
 })
+
+app.post('/accountcreation', (req, res) => {
+    AccountCreation.insertOne(req.body)
+      .then(result => {
+        console.log(result)
+      })
+      .catch(error => console.error(error))
+      resp.send({ success: true });
+  })
+
 app.listen(5000);
