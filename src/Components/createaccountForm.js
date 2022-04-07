@@ -16,7 +16,21 @@ function Popup(props) {
     const handleSubmit = (event) => {
         event.preventDefualt();
         console.log(inputs);
+
     }
+
+    async function accountcreation(inputs) {
+        await fetch('http://localhost:5000/api/accountcreation', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(inputs)
+        })
+      }
+
+
+    
   
     return (props.trigger) ? (
         <div className="popup">
@@ -30,7 +44,7 @@ function Popup(props) {
                 </div>
                
                 <div className='login_section'>
-                <form action = "/accountcreation" method = "POST" onSubmit={handleSubmit}>
+                <form action = "/accountcreation" method = "POST" onSubmit={accountcreation(inputs)} > 
                     <ul>
                  <li>   <label>Username:
                         <input

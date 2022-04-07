@@ -69,7 +69,9 @@ app.post("/api/import", async (req, resp) => {
     resp.send({ success: true });
 })
 
-app.post('/accountcreation', (req, res) => {
+app.post('/api/accountcreation', async (req, res) => {
+    await client.connect();
+    console.log("Connected correctly to server");
     AccountCreation.insertOne(req.body)
       .then(result => {
         console.log(result)
