@@ -5,6 +5,7 @@ import accountImage from '../images/accountsymbol.png';
 
 function Popup(props) {
     const [inputs, setInputs] = useState({})
+    const [inPortal,setInPortal] = useState({});
 
     const handleChange = (event) => { 
         const name = event.target.name;

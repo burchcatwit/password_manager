@@ -6,12 +6,13 @@ const client = new MongoClient(uri, {
     useNewUrlParser: true,
 });
 
-MongoClient.connect(/* ... */)
+let AccountCreation;
+MongoClient.connect(uri)
   .then(client => {
     // ...
     const db = client.db('PassManager')
 
-    const AccountCreation = db.collection('UserInformation')
+    AccountCreation = db.collection('UserInformation')
 
     // ...
   })
@@ -24,7 +25,16 @@ const { ObjectId } = require("mongodb");
 console.log("App listen at port 5000");
 app.use(express.json());
 app.use(cors());
+
 app.get("/api/passwords", async (req, resp) => {
+    await client.connect();
+    const collection = client.db("PassManager").collection("Test");
+    const passwords = await collection.find( {accountUsername: "Alexane_Schneider"} ).toArray();
+    resp.setHeader('Content-Type', 'application/json');
+    resp.send(JSON.stringify(passwords));
+});
+
+app.get("/api/login", async (req, resp) => {
     await client.connect();
     const collection = client.db("PassManager").collection("Test");
     const passwords = await collection.find( {accountUsername: "Alexane_Schneider"} ).toArray();
@@ -69,7 +79,7 @@ app.post("/api/import", async (req, resp) => {
     resp.send({ success: true });
 })
 
-app.post('/api/accountcreation', async (req, res) => {
+app.post('/accountcreation', async (req, resp) => {
     await client.connect();
     console.log("Connected correctly to server");
     AccountCreation.insertOne(req.body)
@@ -77,7 +87,7 @@ app.post('/api/accountcreation', async (req, res) => {
         console.log(result)
       })
       .catch(error => console.error(error))
-      resp.send({ success: true });
+      resp.send({ success: true }); 
   })
 
 app.listen(5000);

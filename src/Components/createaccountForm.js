@@ -1,36 +1,36 @@
 import React from 'react'
 import { useState } from "react"
+import { useEffect } from 'react';
 import './createaccountForm.css';
 import accountImage from '../images/accountsymbol.png';
 
 function Popup(props) {
-    const [inputs, setInputs] = useState({})
+    const initialValues = {username:"",email:"",password:""};
+    const [formValues, setFormValues] = useState(initialValues);
+ 
 
     const handleChange = (event) => { 
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({ ...values, [name]: value }))
+        const { name, value } = event.target;
+        setFormValues({ ...formValues, [name]: value });
     }
   
-    
-    const handleSubmit = (event) => {
-        event.preventDefualt();
-        console.log(inputs);
-
-    }
-
-    async function accountcreation(inputs) {
-        await fetch('http://localhost:5000/api/accountcreation', {
+    function accountcreation(event) {
+        event.preventDefault();
+        fetch('http://localhost:5000/accountcreation', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(inputs)
+          body: JSON.stringify(formValues)
         })
+        props.setTrigger(false)
+        if(props.trigger == true)
+            {
+                setFormValues(initialValues);
+            }
       }
 
 
-    
   
     return (props.trigger) ? (
         <div className="popup">
@@ -44,56 +44,33 @@ function Popup(props) {
                 </div>
                
                 <div className='login_section'>
-                <form action = "/accountcreation" method = "POST" onSubmit={accountcreation(inputs)} > 
+                <form onSubmit={accountcreation} >
                     <ul>
-                 <li>   <label>Username:
+                    <li>   <label>Username:
                         <input
                             type="text"
                             name="username"
-                            value={inputs.username || ""}
+                            value={formValues.username }
                             onChange={handleChange}
                         />
                     </label> </li> 
-                  <li>  
-                      <label>E-Mail:
+                    <li>   <label>Email:
+                        <input
+                            type="text"
+                            name="email"
+                            value={formValues.email }
+                            onChange={handleChange}
+                        />
+                    </label> </li> 
+                 <li>   <label>Password:
                         <input
                             type="text"
                             name="password"
-                            value={inputs.password || ""}
+                            value={formValues.password }
                             onChange={handleChange}
                         />
-                    </label> 
-                    </li>
-                    <li>  
-                      <label>Confirm E-Mail:
-                        <input
-                            type="text"
-                            name="password"
-                            value={inputs.password || ""}
-                            onChange={handleChange}
-                        />
-                    </label> 
-                    </li>
-                    <li>  
-                      <label>Password:
-                        <input
-                            type="text"
-                            name="password"
-                            value={inputs.password || ""}
-                            onChange={handleChange}
-                        />
-                    </label> 
-                    </li>
-                    <li>  
-                      <label>Confirm Password:
-                        <input
-                            type="text"
-                            name="password"
-                            value={inputs.password || ""}
-                            onChange={handleChange}
-                        />
-                    </label> 
-                    </li>
+                    </label> </li> 
+           
                  <li>   <input type="submit" /> </li> 
                     </ul>
                     
