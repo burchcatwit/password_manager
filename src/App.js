@@ -10,6 +10,7 @@ import './App.css';
 function App() {
   const [loginbuttonPopup, setloginButtonPopup] = useState(false);
   const [createbuttonPopup, setcreateButtonPopup] = useState(false);
+  const [inPortal,setInPortal] = useState(false);
 
   return (
 

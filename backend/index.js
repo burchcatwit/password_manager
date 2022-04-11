@@ -12,7 +12,8 @@ MongoClient.connect(uri)
     // ...
     const db = client.db('PassManager')
 
-    AccountCreation = db.collection('UserInformation')
+    AccountInfo = db.collection('UserInformation')
+    TestInsert = db.collection('Test1')
 
     // ...
   })
@@ -34,13 +35,7 @@ app.get("/api/passwords", async (req, resp) => {
     resp.send(JSON.stringify(passwords));
 });
 
-app.get("/api/login", async (req, resp) => {
-    await client.connect();
-    const collection = client.db("PassManager").collection("Test");
-    const passwords = await collection.find( {accountUsername: "Alexane_Schneider"} ).toArray();
-    resp.setHeader('Content-Type', 'application/json');
-    resp.send(JSON.stringify(passwords));
-});
+
 
 app.delete("/api/passwords", async (req, resp) =>{
     let {_id} = req.body;
@@ -82,12 +77,26 @@ app.post("/api/import", async (req, resp) => {
 app.post('/accountcreation', async (req, resp) => {
     await client.connect();
     console.log("Connected correctly to server");
-    AccountCreation.insertOne(req.body)
+    AccountInfo.insertOne(req.body)
       .then(result => {
         console.log(result)
       })
       .catch(error => console.error(error))
       resp.send({ success: true }); 
+  })
+
+  app.post('/login', async (req, resp) => {
+    await client.connect();
+    console.log("Connected correctly to server");
+    AccountInfo.aggregate([ { $match : { username : req.body.username,password: req.body.password } } ]).toArray()
+    .then(result => {
+        console.log(result)
+        console.log("We found it")
+      })
+      .catch(error => console.error(error))
+      
+    resp.send({ success: true }); 
+
   })
 
 app.listen(5000);
