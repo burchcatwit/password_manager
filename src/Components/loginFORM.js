@@ -1,14 +1,17 @@
-import React from 'react'
-import { useState } from "react"
+import React, { useState } from 'react';
 import './loginFORM.css';
+import mockup from '../images/MOCKUPS.png';
+import { BrowserRouter as Router,Switch,Route } from 'react-router-dom';
 import accountImage from '../images/accountsymbol.png';
 import inPortalHome from './home.js';
+import { response } from 'express';
 
 function Popup(props) {
-   
+    
     const initialValues = {username:"",password:""};
     const [inputs, setInputs] = useState(initialValues);
     const [inPortal,setInPortal] = useState({});
+    const inPortalStatus = false;
 
     const handleChange = (event) => { 
         const name = event.target.name;
@@ -24,22 +27,16 @@ function Popup(props) {
           },
           body: JSON.stringify(inputs)
         })
-        .then((response) => response.json())
-        .then(setInPortal(true))
-        if(inPortal)
-            {
-                console.log("in the portal")
-
-            }
+        .then(response => response.json())
+        .then(json => console.log(json))
         props.setTrigger(false)
         if(props.trigger == true)
             {
                 setInputs(initialValues);
             }
       }
-
-
-    return (props.trigger) ? (
+        
+             return (props.trigger) ? (
         <div className="popup">
             <div className="popup-inner">
                 <div className='closebutton_section'>
@@ -82,6 +79,8 @@ function Popup(props) {
         </div>
 
     ) : "";
+        
+   
 }
 
 export default Popup

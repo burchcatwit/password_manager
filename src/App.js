@@ -10,7 +10,7 @@ import './App.css';
 function App() {
   const [loginbuttonPopup, setloginButtonPopup] = useState(false);
   const [createbuttonPopup, setcreateButtonPopup] = useState(false);
-  const [inPortal,setInPortal] = useState(false);
+  
 
   return (
 
@@ -32,21 +32,28 @@ function App() {
           </ul>
         </div>
      </div>
-
+<Router> 
      <div className='main-body'>
-      <img src={mockup} className="macMockup" alt="logo" />
-     </div>
+
+     </div>    
+
+</Router>   
      <div className='main-footer'>
         <h1>footer</h1>
      </div>
-   
+
     </div>
 
-    
+
 
     
   );
 }
+    const homePage = () => (
+      <div>
+        <img src={mockup} className="macMockup" alt="logo" />
+      </div>
+    )
 
-
+    
 export default App;
