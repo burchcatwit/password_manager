@@ -10,7 +10,10 @@ import './App.css';
 function App() {
   const [loginbuttonPopup, setloginButtonPopup] = useState(false);
   const [createbuttonPopup, setcreateButtonPopup] = useState(false);
+<<<<<<< HEAD
   
+=======
+>>>>>>> parent of a3a3833 (Log in Function)
 
   return (
 

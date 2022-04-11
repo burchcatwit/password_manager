@@ -12,8 +12,7 @@ MongoClient.connect(uri)
     // ...
     const db = client.db('PassManager')
 
-    AccountInfo = db.collection('UserInformation')
-    TestInsert = db.collection('Test1')
+    AccountCreation = db.collection('UserInformation')
 
     // ...
   })
@@ -36,7 +35,13 @@ app.get("/api/passwords", async (req, resp) => {
   resp.send(JSON.stringify(passwords));
 });
 
-
+app.get("/api/login", async (req, resp) => {
+    await client.connect();
+    const collection = client.db("PassManager").collection("Test");
+    const passwords = await collection.find( {accountUsername: "Alexane_Schneider"} ).toArray();
+    resp.setHeader('Content-Type', 'application/json');
+    resp.send(JSON.stringify(passwords));
+});
 
 app.delete("/api/passwords", async (req, resp) => {
   let { _id } = req.body;
@@ -76,6 +81,7 @@ app.post("/api/import", async (req, resp) => {
 })
 
 app.post('/accountcreation', async (req, resp) => {
+<<<<<<< HEAD
   await client.connect();
   console.log("Connected correctly to server");
   AccountInfo.insertOne(req.body)
@@ -100,4 +106,16 @@ app.post('/login', async (req, resp) => {
 
 })
 
+=======
+    await client.connect();
+    console.log("Connected correctly to server");
+    AccountCreation.insertOne(req.body)
+      .then(result => {
+        console.log(result)
+      })
+      .catch(error => console.error(error))
+      resp.send({ success: true }); 
+  })
+
+>>>>>>> parent of a3a3833 (Log in Function)
 app.listen(5000);

@@ -3,6 +3,7 @@ import './loginFORM.css';
 import mockup from '../images/MOCKUPS.png';
 import { BrowserRouter as Router,Switch,Route } from 'react-router-dom';
 import accountImage from '../images/accountsymbol.png';
+<<<<<<< HEAD
 import inPortalHome from './home.js';
 import { response } from 'express';
 
@@ -10,6 +11,11 @@ function Popup(props) {
     
     const initialValues = {username:"",password:""};
     const [inputs, setInputs] = useState(initialValues);
+=======
+
+function Popup(props) {
+    const [inputs, setInputs] = useState({})
+>>>>>>> parent of a3a3833 (Log in Function)
     const [inPortal,setInPortal] = useState({});
     const inPortalStatus = false;
 
@@ -18,6 +24,7 @@ function Popup(props) {
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
     }
+<<<<<<< HEAD
    async function checkValidation(event) {
         event.preventDefault();
         fetch('http://localhost:5000/login', {
@@ -37,6 +44,16 @@ function Popup(props) {
       }
         
              return (props.trigger) ? (
+=======
+  
+    
+    const handleSubmit = (event) => {
+        event.preventDefualt();
+        console.log(inputs);
+    }
+  
+    return (props.trigger) ? (
+>>>>>>> parent of a3a3833 (Log in Function)
         <div className="popup">
             <div className="popup-inner">
                 <div className='closebutton_section'>
@@ -48,13 +65,13 @@ function Popup(props) {
                 </div>
                
                 <div className='login_section'>
-                <form onSubmit={checkValidation}>
+                <form onSubmit={handleSubmit}>
                     <ul>
                  <li>   <label>Username:
                         <input
                             type="text"
                             name="username"
-                            value={inputs.username}
+                            value={inputs.username || ""}
                             onChange={handleChange}
                         />
                     </label> </li> 
@@ -63,7 +80,7 @@ function Popup(props) {
                         <input
                             type="text"
                             name="password"
-                            value={inputs.password}
+                            value={inputs.password || ""}
                             onChange={handleChange}
                         />
                     </label> 
