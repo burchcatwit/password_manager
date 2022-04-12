@@ -10,10 +10,7 @@ import './App.css';
 function App() {
   const [loginbuttonPopup, setloginButtonPopup] = useState(false);
   const [createbuttonPopup, setcreateButtonPopup] = useState(false);
-<<<<<<< HEAD
-  
-=======
->>>>>>> parent of a3a3833 (Log in Function)
+  const [inPortal,setInPortal] = useState(false);
 
   return (
 
@@ -35,28 +32,21 @@ function App() {
           </ul>
         </div>
      </div>
-<Router> 
+
      <div className='main-body'>
-
-     </div>    
-
-</Router>   
+      <img src={mockup} className="macMockup" alt="logo" />
+     </div>
      <div className='main-footer'>
         <h1>footer</h1>
      </div>
-
+   
     </div>
 
-
+    
 
     
   );
 }
-    const homePage = () => (
-      <div>
-        <img src={mockup} className="macMockup" alt="logo" />
-      </div>
-    )
 
-    
+
 export default App;
