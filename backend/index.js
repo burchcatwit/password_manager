@@ -7,17 +7,18 @@ const client = new MongoClient(uri, {
 });
 
 // For backend and express
+const local_port = 5000
 const express = require('express');
 const app = express();
 const cors = require("cors");
 const { ObjectId } = require("mongodb");
-console.log("App listen at port 5000");
+console.log("App listening at port " + local_port);
 app.use(express.json());
 app.use(cors());
 app.get("/api/passwords", async (req, resp) => {
     await client.connect();
     const collection = client.db("PassManager").collection("Username/Password");
-    const passwords = await collection.find( {accountUsername: "Alexane_Schneider"} ).toArray();
+    const passwords = await collection.find( {accountUsername: "Alexane_Schneider"} ).toArray(); // change to variable
     resp.setHeader('Content-Type', 'application/json');
     resp.send(JSON.stringify(passwords));
 });
@@ -58,4 +59,4 @@ app.post("/api/import", async (req, resp) => {
     }
     resp.send({ success: true });
 })
-app.listen(5000);
+app.listen(local_port);
