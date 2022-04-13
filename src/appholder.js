@@ -27,8 +27,8 @@ export function NavHeader() {
         </a>
         <div className="inner">
           <ul className="nav-links">
-            <Link to="/password-list">My Passwords</Link>
-            <Link to="/password-generator">Password Generator</Link>
+            <button onclick="window.location.href='http://localhost:3000/password-list'">My Passwords</button>
+            <button onclick="window.location.href='http://localhost:3000/password-generator'">Password Generator</button>
           </ul>
         </div>
       </div>
