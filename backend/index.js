@@ -89,13 +89,14 @@ app.post('/accountcreation', async (req, resp) => {
     console.log("Connected correctly to server");
     AccountInfo.aggregate([ { $match : { username : req.body.username,password: req.body.password } } ]).toArray()
     .then(result => {
+      resp.sendStatus(200)
         console.log(result)
-        console.log("We found it")
+        console.log("We found it") 
       })
+     
       .catch(error => console.error(error))
-      
-    resp.send({ success: true }); 
+    
 
   })
 
-app.listen(5000);
+app.listen(5000, () => console.log('API is running on http://localhost:5000/login'));

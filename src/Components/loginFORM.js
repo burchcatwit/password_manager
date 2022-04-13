@@ -8,7 +8,6 @@ function Popup(props) {
    
     const initialValues = {username:"",password:""};
     const [inputs, setInputs] = useState(initialValues);
-    const [inPortal,setInPortal] = useState({});
 
     const handleChange = (event) => { 
         const name = event.target.name;
@@ -24,15 +23,14 @@ function Popup(props) {
           },
           body: JSON.stringify(inputs)
         })
-        .then((response) => response.json())
-        .then(setInPortal(true))
-        if(inPortal)
-            {
-                console.log("in the portal")
-
-            }
+        .then((response) => {
+            if(response.status===200)
+                {
+                    window.location.href = 'http://localhost:3000/Dashboard';
+                }
+        })
         props.setTrigger(false)
-        if(props.trigger == true)
+        if(props.trigger === true)
             {
                 setInputs(initialValues);
             }
