@@ -2,7 +2,6 @@ import React from 'react'
 import { useState } from "react"
 import './loginFORM.css';
 import accountImage from '../images/accountsymbol.png';
-import inPortalHome from './home.js';
 
 function Popup(props) {
    
