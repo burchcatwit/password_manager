@@ -4,7 +4,7 @@ import mockup from '../images/MOCKUPS.png';
 import LogIN from  '../forms/loginFORM';
 import CreateForm from '../forms/createaccountForm'; 
 import { useState } from 'react';
-import '../home/home.css';
+import './home.css';
 
 function Home() {
   const [loginbuttonPopup, setloginButtonPopup] = useState(false);

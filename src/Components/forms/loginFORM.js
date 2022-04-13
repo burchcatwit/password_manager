@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from "react"
 import './loginFORM.css';
 import accountImage from '../images/accountsymbol.png';
+//import Dashboard from '../../Portal/dashboard.js';
 
 function Popup(props) {
    
@@ -25,7 +26,7 @@ function Popup(props) {
         .then((response) => {
             if(response.status===200)
                 {
-                    window.location.href = 'http://localhost:3000/Dashboard';
+                    window.location.href = 'http://localhost:3000/Dashboard'
                 }
         })
         props.setTrigger(false)

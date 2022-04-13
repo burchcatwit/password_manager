@@ -1,6 +1,6 @@
 import React from 'react'
-import Home from '../src/Components/home/home'
-import Portal from './appholder.js';
+import Home from '../src/Components/home/home';
+import Portal from './appholder';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import logo from '../src/Components/images/mainlogo.png';
 import mockup from '../src/Components/images/MOCKUPS.png';
@@ -14,15 +14,13 @@ function App() {
   const [createbuttonPopup, setcreateButtonPopup] = useState(false);
   const [inPortal,setInPortal] = useState(false);
   return (
-    <Router>    
-      <Route path="">
-          <Home />
-        </Route>
-      <Switch>
-        <Route path="/Dashboard">
-          <Portal />
-        </Route>
-      </Switch>
+    <Router>
+	<Switch>
+	<Route exact path='/' component={Home}/>
+	 </Switch>
+	<Switch>  
+        <Route path='/Dashboard' component={Portal}/>
+	</Switch>
     </Router>
   );
 }

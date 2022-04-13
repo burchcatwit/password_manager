@@ -5,7 +5,7 @@ import less_logo from './baseline_expand_less_white_24dp.png';
 import more_logo from './baseline_expand_more_white_24dp.png';
 
 
-import './App.css';
+import './appholder.css';
 import { Link } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
@@ -322,6 +322,7 @@ function App() {
     <main className = "content">
       <h2>Password Manager</h2>
       <p>Welcome to the most secure password manager!</p>
+     <p> Testing</p>
     </main>
   );
 }
