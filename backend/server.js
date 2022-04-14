@@ -1,6 +1,6 @@
 
 //Insert your "secret link" here to access mongodb
-const uri = "";
+const uri = "mongodb+srv://burchy99:%2AJL0hn36%23%2AgC@passmanager.lkwxg.mongodb.net";
 const MongoClient = require("mongodb").MongoClient;
 const client = new MongoClient(uri, {
     useNewUrlParser: true,

@@ -4,7 +4,6 @@ import edit_logo from './baseline_edit_white_24dp.png';
 import less_logo from './baseline_expand_less_white_24dp.png';
 import more_logo from './baseline_expand_more_white_24dp.png';
 
-
 import './App.css';
 import { Link } from "react-router-dom";
 import React from "react";
@@ -13,7 +12,7 @@ import Checkbox from "./Checkbox";
 import { createPassword } from "./createPassword";
 import Collapsible from 'react-collapsible';
 import copy from "copy-to-clipboard";  
-import { Container } from './Container';
+import { Container } from './Container/container';
 
 // needed for password obfuscation
 import IconButton from "@material-ui/core/IconButton";
@@ -23,10 +22,8 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 
 
-
 export function NavHeader() {
   return (
-    
     <nav className="nav">
       <div className="container">
         <a href="/" id="image">
@@ -43,7 +40,6 @@ export function NavHeader() {
   )
 }
 
-
 function CollapsibleLable(props) {
   return (
     <div style={{ display: 'flex'}}>
@@ -52,8 +48,6 @@ function CollapsibleLable(props) {
     </div>
   )
 }
-
-
 
 function PasswordEntry(props) {
   // functions for obfuscation
@@ -231,11 +225,10 @@ export class PasswordList extends React.Component {
         <h2>
           <span>Password List</span>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a download="passwords.txt" href={this.state.downloadLink}> Export </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <Container triggerText={this.triggerText} onSubmit={this.onSubmit} />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <div> Import <input type="file" name = 'import' onChange={ e => this.importPasswords(e.target.files[0]) }></input> </div>
+          <button type="button">Export<a download="passwords.txt" href={this.state.downloadLink}></a></button>
         </h2>
         { 
           this.state.passwords.map((p, i) => 
@@ -288,6 +281,7 @@ export class PasswordGenerator extends React.Component {
       Symbols: false,
       Numbers: false
     }
+
   };
 
   selectAllCheckboxes = isSelected => {
@@ -335,14 +329,18 @@ export class PasswordGenerator extends React.Component {
   createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
   render() {
+    const test_pass = createPassword(15, this.state.checkboxes.Symbols, this.state.checkboxes.Uppercase, this.state.checkboxes.Numbers)
     return (
-      <main className = "content">
+      <main className="content">
          <div className="rows">
           <div className="colomn">
             <form onSubmit={this.handleFormSubmit}>
                {this.createCheckboxes()}
             </form>
-            <p>{ createPassword(15, this.state.checkboxes.Symbols, this.state.checkboxes.Uppercase, this.state.checkboxes.Numbers) }</p>
+            <p>
+              { test_pass }
+              <a href="#" onClick={() => copy(test_pass)}> <img src={copy_logo} className="Function-button"/></a>
+            </p>
            </div>
          </div>
       </main>
@@ -359,45 +357,10 @@ export function _PasswordGenerator() {
 }
 
 const App = () => {
-  const [values, setValues] = React.useState({
-    password: "",
-    showPassword: false,
-  });
-  
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
-  
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-  
-  const handlePasswordChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-  
   return (
-    <div
-      style={{
-        marginLeft: "30%",
-      }}
-    >
-      <Input
-        type={values.showPassword ? "text" : "password"}
-        onChange={handlePasswordChange("password")}
-        value={values.password}
-        endAdornment={
-          <InputAdornment position="end">
-            <IconButton
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-            >
-              {values.showPassword ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
-          </InputAdornment>
-        }
-      />
-    </div>
+    <main className = "content">
+      <h2>Fear not user! The Spartans have a shield for you!</h2>
+    </main>
   );
 };
 

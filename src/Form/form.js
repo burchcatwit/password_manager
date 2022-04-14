@@ -27,7 +27,7 @@ export const Form = ({ onSubmit }) => {
           className="form-control"
           id="password"
           placeholder="***************"
-	  defaultValue={createPassword(15, true, true, true)}
+	  defaultValue={createPassword(15, true, true, true)} // add obfuscation here
         />
       </div>
       <div className="form-group">

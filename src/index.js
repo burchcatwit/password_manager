@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './index.css';
+import './font.css';
 import App, { NavHeader } from './App';
 import { PasswordGenerator, PasswordList } from './App';
 import reportWebVitals from './reportWebVitals';
@@ -11,7 +11,6 @@ ReactDOM.render(
     <BrowserRouter>
       <NavHeader/>
       <Routes>
-        
         <Route path="/" element={<App/>} />
         <Route path="password-list" element={<PasswordList/>} />
         <Route path="password-generator" element={<PasswordGenerator/>} />
