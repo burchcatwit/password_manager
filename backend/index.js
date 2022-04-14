@@ -28,7 +28,7 @@ app.use(cors());
 
 app.get("/api/passwords", async (req, resp) => {
     await client.connect();
-    const collection = client.db("PassManager").collection("Test");
+    const collection = client.db("PassManager").collection("Username/Password");
     const passwords = await collection.find( {accountUsername: "Alexane_Schneider"} ).toArray();
     resp.setHeader('Content-Type', 'application/json');
     resp.send(JSON.stringify(passwords));
@@ -40,7 +40,7 @@ app.delete("/api/passwords", async (req, resp) =>{
     let {_id} = req.body;
     await client.connect();
     console.log("Connected correctly to server");
-    const collection = client.db("PassManager").collection("Test");
+    const collection = client.db("PassManager").collection("Username/Password");
     await collection.deleteOne({_id: ObjectId(_id)})
 });
 
@@ -49,7 +49,7 @@ const pushUpdate = async (password) =>{
     delete $set._id;
     await client.connect();
     console.log("Connected correctly to server");
-    const collection = client.db("PassManager").collection("Test");
+    const collection = client.db("PassManager").collection("Username/Password");
     let result = await collection.updateOne(
         { _id: ObjectId(password._id) },
         {
@@ -66,7 +66,7 @@ app.post("/api/passwords", req => pushUpdate(req.body) );
 app.post("/api/import", async (req, resp) => {
     await client.connect();
     console.log("Connected correctly to server");
-    const collection = client.db("PassManager").collection("Test");
+    const collection = client.db("PassManager").collection("Username/Password");
     for (let i in req.body){
         await pushUpdate(req.body[i]);
     }

@@ -27,8 +27,8 @@ export function NavHeader() {
         </a>
         <div className="inner">
           <ul className="nav-links">
-            <button onclick="window.location.href='http://localhost:3000/password-list'">My Passwords</button>
-            <button onclick="window.location.href='http://localhost:3000/password-generator'">Password Generator</button>
+	 	<button><Link to="/password-list">Password List</Link></button>
+		<button><Link to="/password-generator">Password Generator</Link></button>
           </ul>
         </div>
       </div>
@@ -187,6 +187,7 @@ export class PasswordList extends React.Component {
   render() {
     return (
       <main className = "content">
+	<NavHeader />
         <h2>
           <span>Password List</span>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -296,6 +297,7 @@ export class PasswordGenerator extends React.Component {
   render() {
     return (
       <main className = "content">
+	 <NavHeader />
          <div className="rows">
           <div className="colomn">
             <form onSubmit={this.handleFormSubmit}>
@@ -320,6 +322,7 @@ export function _PasswordGenerator() {
 function App() {
   return (
     <main className = "content">
+      <NavHeader />  
       <h2>Password Manager</h2>
       <p>Welcome to the most secure password manager!</p>
      <p> Testing</p>

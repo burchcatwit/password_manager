@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import './App.css';
 import Home from '../src/Components/home/home';
-import Portal from './appholder.js';
+import App from './appholder';
 import { NavHeader } from './appholder.js';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import logo from '../src/Components/images/mainlogo.png';
@@ -17,12 +17,11 @@ import { PasswordGenerator, PasswordList } from "./appholder.js";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-    <NavHeader/>
 	<Switch>
 	<Route exact path="/" component={Home}/>
-	 </Switch>
+	</Switch>
 	<Switch>  
-        <Route exact path="/Dashboard" component={Portal}/>
+        <Route exact path="/Dashboard" component={App}/>
 	</Switch>
 	<Switch>
 	<Route exact path="/password-list" component={PasswordList} />
