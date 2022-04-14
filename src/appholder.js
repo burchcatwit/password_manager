@@ -15,7 +15,12 @@ import Collapsible from 'react-collapsible';
 import copy from "copy-to-clipboard";  
 import { Container } from './Container';
 
-
+// needed for password obfuscation
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Input from "@material-ui/core/Input";
 
 export function NavHeader() {
   return (
@@ -48,6 +53,23 @@ function CollapsibleLable(props) {
 
 
 function PasswordEntery(props) {
+  const [values, setValues] = React.useState({
+    password: "",
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+   const handlePasswordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+	
   let [editingUsername, setEditingUsername] = useState(false);
   let [editingPassword, setEditingPassword] = useState(false);
   let [editingNotes, setEditingNotes] = useState(false);
@@ -61,7 +83,22 @@ function PasswordEntery(props) {
           <a href="#" onClick={() => setEditingUsername(!editingUsername)}><img src={edit_logo} className="Function-button"/></a> 
           <a href="#" onClick={() => copy(p.siteUsername)}> <img src={copy_logo} className="Function-button"/></a>
 
-      {editingPassword && <input type="text" value={p.sitePassword} onChange={(e) => onEditPassword(e.target.value)}></input> || <span>{"Password: " + p.sitePassword }</span> }
+      {editingPassword && <div>
+        <Input
+        type={values.showPassword ? "text" : "password"}
+        onChange={(e) => onEditPassword(e.target.value)}
+        value={p.sitePassword}
+        endAdornment={
+          <InputAdornment position="end">
+            <IconButton
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDownPassword}
+            >
+              {values.showPassword ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
+          </InputAdornment>
+        }
+      /></div> || <span>{"Password: " + "*".repeat(p.sitePassword.length) }</span> }
           <a href="#" onClick={() => setEditingPassword(!editingPassword)}> <img src={edit_logo} className="Function-button"/> </a>
           <a href="#" onClick={() => copy(p.sitePassword)}> <img src={copy_logo} className="Function-button"/> </a>
 
@@ -295,6 +332,7 @@ export class PasswordGenerator extends React.Component {
   createCheckboxes = () => OPTIONS.map(this.createCheckbox);
 
   render() {
+    const test_pass = createPassword(15, this.state.checkboxes.Symbols, this.state.checkboxes.Uppercase, this.state.checkboxes.Numbers)
     return (
       <main className = "content">
 	 <NavHeader />
@@ -303,7 +341,8 @@ export class PasswordGenerator extends React.Component {
             <form onSubmit={this.handleFormSubmit}>
                {this.createCheckboxes()}
             </form>
-            <p>{ createPassword(15, this.state.checkboxes.Symbols, this.state.checkboxes.Uppercase, this.state.checkboxes.Numbers) }</p>
+            <p>{ test_pass }
+              <a href="#" onClick={() => copy(test_pass)}> <img src={copy_logo} className="Function-button"/></a></p>
            </div>
          </div>
       </main>
@@ -325,7 +364,6 @@ function App() {
       <NavHeader />  
       <h2>Password Manager</h2>
       <p>Welcome to the most secure password manager!</p>
-     <p> Testing</p>
     </main>
   );
 }
