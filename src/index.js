@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import './App.css';
+import './appholder.css';
 import Home from '../src/Components/home/home';
 import App from './appholder';
 import { NavHeader } from './appholder.js';

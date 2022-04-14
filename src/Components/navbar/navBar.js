@@ -4,7 +4,7 @@ import mockup from './images/MOCKUPS.png';
 import LogIN from "./components/loginFORM.js"; 
 import {BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
 import { useState } from 'react';
-import './App.css';
+import './appholder.css';
 
 function App() {
   const [buttonPopup, setButtonPopup] = useState(false);
