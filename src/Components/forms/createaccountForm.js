@@ -7,8 +7,6 @@ import accountImage from '../images/accountsymbol.png';
 function Popup(props) {
     const initialValues = {username:"",email:"",password:""};
     const [formValues, setFormValues] = useState(initialValues);
- 
-
     const handleChange = (event) => { 
         const { name, value } = event.target;
         setFormValues({ ...formValues, [name]: value });
@@ -32,7 +30,7 @@ function Popup(props) {
 
 
   
-    return (props.trigger) ? (
+    return  (
         <div className="popup">
             <div className="popup-inner">
                 <div className='closebutton_section'>
@@ -81,7 +79,7 @@ function Popup(props) {
 
         </div>
 
-    ) : "";
+    );
 }
 
 export default Popup
