@@ -40,9 +40,7 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <button class="form-control btn btn-primary" type="submit">
-          Submit
-        </button>
+	<input type="submit" value="Submit" />
       </div>
     </form>
   );
