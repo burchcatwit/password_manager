@@ -18,11 +18,12 @@ MongoClient.connect(uri)
   })
 
 // For backend and express
+const local_port = 5000
 const express = require('express');
 const app = express();
 const cors = require("cors");
 const { ObjectId } = require("mongodb");
-console.log("App listen at port 5000");
+console.log("App listen at port " + local_port);
 app.use(express.json());
 app.use(cors());
 
