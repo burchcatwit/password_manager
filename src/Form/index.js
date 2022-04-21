@@ -22,10 +22,11 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input
+        <label htmlFor="pwd">Password</label>
+        <input type="password"
           className="form-control"
-          id="password"
+          id="pwd"
+	  name="pwd"
           placeholder="***************"
 	  defaultValue={createPassword(15, true, true, true)}
         />
@@ -35,16 +36,16 @@ export const Form = ({ onSubmit }) => {
         <textarea
           className="form-control"
           id="otherNotes"
-          placeholder="Hi there,
-These are my notes"
+          placeholder="Hi there, These are my notes"
         />
       </div>
       <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit">
+        <button class="form-control btn btn-primary" type="submit">
           Submit
         </button>
       </div>
     </form>
   );
 };
+
 export default Form;
