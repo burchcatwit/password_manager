@@ -2,7 +2,13 @@ import React from 'react'
 import { useState } from "react"
 import './loginFORM.css';
 import accountImage from '../images/accountsymbol.png';
-//import Dashboard from '../../Portal/dashboard.js';
+
+// needed for password obfuscation
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Input from "@material-ui/core/Input";
 
 function Popup(props) {
    
@@ -14,6 +20,7 @@ function Popup(props) {
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
     }
+
    async function checkValidation(event) {
         event.preventDefault();
         fetch('http://localhost:5000/login', {
@@ -60,13 +67,13 @@ function Popup(props) {
                         />
                     </label> </li> 
                   <li>  
-                      <label>Password:
-                        <input
-                            type="text"
-                            name="password"
-                            value={inputs.password}
-                            onChange={handleChange}
-                        />
+                      <label for="pwd">Password:
+                          <input
+	    		    type="password"
+	    		    id="pwd"
+	    		    name="pwd"
+	    		    onChange={handleChange}
+      			/>
                     </label> 
                     </li>
                  <li>   <input type="submit" /> </li> 
