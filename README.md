@@ -65,6 +65,8 @@ This password manager made use of the MERN stack architecture and the major feat
 
 5. Navigate to [http://localhost:3000](http://localhost:3000) and the site should be running
 
+6. Please reach out to a member of our team (contact information in contributors section) via email if experiencing additional errors that are preventing the site from running.
+
 ## Other Files
 
 ### Add a single peice of data
