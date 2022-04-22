@@ -20,11 +20,11 @@ The following features are currently available in the web application:
 1. First make sure that [https://nodejs.org/en/](node.js) is installed
 
 2. Clone this repository and install its dependencies
-
+                        
         > git clone https://github.com/burchcATWIT/password_manager.git
         > cd password-manager
         > npm install
-
+                
 3. **Note**: Some devices may be incompatible with the fservents package dependencies contained in the package files of the password manager application.     As these are not critical packages for site functionality, they can be uninstalled if errors arise during initial installation or during runtime         through the following command:
 
      > npm uninstall fservents
