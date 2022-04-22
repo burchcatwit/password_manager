@@ -13,7 +13,7 @@ import Checkbox from "./Checkbox";
 import { createPassword } from "./passwordGenerators/createPassword";
 import Collapsible from 'react-collapsible';
 import copy from "copy-to-clipboard";  
-import { Container } from './Container';
+import Container from './Container/container.js';
 
 // needed for password obfuscation
 import IconButton from "@material-ui/core/IconButton";
