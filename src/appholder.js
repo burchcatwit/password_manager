@@ -219,8 +219,11 @@ export class PasswordList extends React.Component {
     let passwords = await response.json()
 
      if(window.location.pathname.localeCompare("/password-list") == 0) {
-                  let userpass = prompt("Enter master password to access password list");
-                  alert ("Password list access granted");
+                  let userpass = null;
+	     	  while (userpass == null) {
+			userpass = prompt("Enter master password to access password list");
+		  }
+	     	  alert ("Access to password list granted");
      }
 
     
