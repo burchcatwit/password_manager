@@ -1,4 +1,10 @@
-# Running the site
+# Password Manager Application
+
+## Introduction
+
+The objective of this project is to create a password management system and web application, similar to that of LastPass or Bitwarden. Users will be able to generate secure passwords, store passwords and account information in a database that is viewable via a web app, and stored information can then be automatically filled into website forms across the internet.
+
+## Running the site
 
 - First make sure that [https://nodejs.org/en/](node.js) is installed
 
