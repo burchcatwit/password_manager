@@ -91,6 +91,8 @@ This password manager made use of the MERN stack architecture and the major feat
 
 ## Demo Video
 
+https://www.youtube.com/watch?v=SqcZT2kLEuM
+
 ## Contributors
 
 * Andrew Hogan (hogana3@wit.edu), full-stack developer for password generation and database creation contributor
