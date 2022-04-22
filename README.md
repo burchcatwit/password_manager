@@ -13,6 +13,12 @@ The following features are currently available in the web application:
 3. Secure Password Generation
 4. Import/Export Passwords
 
+## System Architecture
+
+This password manager made use of the MERN stack architecture and the major features of each application component can be observed in the following diagram:
+
+![Architecture-Page-2 drawio](https://user-images.githubusercontent.com/43997359/164765455-5c05a2ed-04d6-4d0a-895a-f97fd906c36e.png)
+
 ## Getting Started
 
 ### Installation and Setup
@@ -42,26 +48,50 @@ The following features are currently available in the web application:
 
 #### Running the backend
 
-- Make sure that your current directory is "backend"
+2. Navigate to the backend directory and run:
 
-- Run "node index.js"
+        > node index.js
 
 #### Running the frontend
 
-- Make sure that your current directory is root
+3. Open a new terminal window and navigate back to the root directory of the manager:
 
-- Run "npm start"
+        > cd password-manager
 
-- Go to [http://localhost:3000](http://localhost:3000) and the site should be viewable.
+4. From the root directory, navigate to the source directory of the application and start the site
 
-# Other Files
+        > cd src
+        > npm start
 
-## Add a single peice of data
+5. Navigate to [http://localhost:3000](http://localhost:3000) and the site should be running
 
-- Run "node addonedata.js"
+## Other Files
 
-- Fill out the data as asked
+### Add a single peice of data
 
-## Add new random data
+1. Run script from root directory to add sample password manager data: 
 
-- Run "node randomdatapop.js"
+        > node addonedata.js
+
+2. Respond to the prompts as asked
+
+3. View new password entry in password list 
+
+### Add new random data
+
+1. Run script from root directory to add multiple entries of new password manager data:
+
+        > node randomdatapop.js
+
+2. View new password entries in password list
+
+3. **Note**: The scripts in this section are for site beta purposes and will be removed in a production environment (i.e.: when the site is publicly accessible)
+
+## Demo Video
+
+## Contributors
+
+* Andrew Hogan (hogana3@wit.edu), full-stack developer for password generation and database creation contributor
+* Alex Grant (granta5@wit.edu), full-stack developer for password list viewing and functionality
+* Lo-Badal Burch (burchc@wit.edu), front-end developer for dashboard pages and database creation contributor
+* Emmanuel "Manny" Chalumeau (chalumeaue@wit.edu), front-end developer for home/login/create account pages and architecture designer
