@@ -27,8 +27,8 @@ import styled from "styled-components";
 
 const theme = {
   red: {
-    default: "#dc143c",
-    hover: "#b22222"
+    default: "#b22222",
+    hover: "#dc143c"
   },
   charcoal: {
     default: "#333333",
@@ -63,20 +63,22 @@ Button.defaultProps = {
 
 export function NavHeader() {
   return (
-    
-    <nav className="nav">
-      <div className="container">
-        <a href="/" id="image">
-              <img src={logo} className="App-logo" alt="logo" />
-        </a>
-        <div className="inner">
-          <ul className="nav-links">
-	    <Button><Link to="/password-list">Password List</Link></Button>
-            <Button><Link to="/password-generator">Password Generator</Link></Button>
-          </ul>
+    <main className = "navbar">
+      <nav className="nav">
+        <div className="container">
+          <a href="/Dashboard" id="image">
+                <img src={logo} className="App-logo" alt="logo" />
+          </a>
+          <div className="inner">
+            <ul className="nav-links">
+              <Button><Link to="/password-list">Password List</Link></Button>
+              <Button><Link to="/password-generator">Password Generator</Link></Button>
+              <Button><Link to="/">Log Out</Link></Button>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </main>
   )
 }
 
@@ -386,7 +388,7 @@ export class PasswordGenerator extends React.Component {
     const test_pass = createPassword(15, this.state.checkboxes.Symbols, this.state.checkboxes.Uppercase, this.state.checkboxes.Numbers)
     return (
       <main className = "content">
-	 <NavHeader />
+        <NavHeader/>
          <div className="rows">
           <div className="colomn">
             <form onSubmit={this.handleFormSubmit}>

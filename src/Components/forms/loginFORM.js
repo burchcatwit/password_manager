@@ -3,13 +3,6 @@ import { useState } from "react"
 import './loginFORM.css';
 import accountImage from '../images/accountsymbol.png';
 
-// needed for password obfuscation
-import IconButton from "@material-ui/core/IconButton";
-import Visibility from "@material-ui/icons/Visibility";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import Input from "@material-ui/core/Input";
-
 function Popup(props) {
    
     const initialValues = {username:"",password:""};

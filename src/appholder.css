@@ -36,6 +36,13 @@ h2 * {
   
 }
 
+.navbar{
+  margin-right: auto;
+  margin-left: -20em;
+  color: white;
+  
+}
+
 .rows{
   margin: 10px 0px
 }
@@ -61,7 +68,7 @@ a:visited {
 
 #image{
   margin-right: auto;
-  margin-left: 15em;
+  margin-left: 20em;
 }
 
 .modal-cover {
