@@ -22,6 +22,44 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 
+// for buttons
+import styled from "styled-components";
+
+const theme = {
+  red: {
+    default: "#dc143c",
+    hover: "#b22222"
+  },
+  charcoal: {
+    default: "#333333",
+    hover: "#36454f"
+  }
+};
+
+const Button = styled.button`
+  background-color: ${(props) => theme[props.theme].default};
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  outline: 0;
+  text-transform: uppercase;
+  margin: 10px 5px;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px lightgray;
+  transition: ease background-color 250ms;
+  &:hover {
+    background-color: ${(props) => theme[props.theme].hover};
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+`;
+
+Button.defaultProps = {
+  theme: "red"
+};
+
 export function NavHeader() {
   return (
     
@@ -32,8 +70,8 @@ export function NavHeader() {
         </a>
         <div className="inner">
           <ul className="nav-links">
-	 	<button><Link to="/password-list">Password List</Link></button>
-		<button><Link to="/password-generator">Password Generator</Link></button>
+            <Button><Link to="/password-list">Password List</Link></Button>
+            <Button><Link to="/password-generator">Password Generator</Link></Button>
           </ul>
         </div>
       </div>
@@ -52,7 +90,7 @@ function CollapsibleLable(props) {
 }
 
 
-function PasswordEntery(props) {
+function PasswordEntry(props) {
   const [values, setValues] = React.useState({
     password: "",
     showPassword: false,
@@ -153,7 +191,7 @@ export class PasswordList extends React.Component {
    
   }
 
-  triggerText = 'New Password';
+  triggerText = 'NEW PASSWORD';
   onSubmit = (event) => {
     let entry = {
       accountUsername: "Alexane_Schneider",
@@ -224,27 +262,30 @@ export class PasswordList extends React.Component {
   render() {
     return (
       <main className = "content">
-	<NavHeader />
-        <h2>
-          <span>Password List</span>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a download="passwords.txt" href={this.state.downloadLink}> Export </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <Container triggerText={this.triggerText} onSubmit={this.onSubmit} />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div> Import <input type="file" name = 'import' onChange={ e => this.importPasswords(e.target.files[0]) }></input> </div>
-        </h2>
+        <NavHeader />
+          <h2>
+            <span>Password List</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <Button theme="charcoal"> <a download="passwords.txt" href={this.state.downloadLink}> Export </a></Button>
+            <Button theme="charcoal">
+              <Container triggerText={this.triggerText} onSubmit={this.onSubmit}></Container>
+            </Button> 
+            <div> 
+              <Button theme="charcoal"> Import 
+              <input type="file" name = 'import' onChange={ e => this.importPasswords(e.target.files[0]) }></input> 
+              </Button> 
+            </div>
+          </h2>
         { 
           this.state.passwords.map((p, i) => 
             <div key={i.toString()}>
-              
               <Collapsible 
                   trigger={<CollapsibleLable siteName={p.siteName} logo={more_logo}/>}
                   triggerWhenOpen={<CollapsibleLable siteName={p.siteName} logo={less_logo}/>}
                   transitionTime={120}
               >
                 <hr/>
-                <PasswordEntery 
+                <PasswordEntry 
                   password={p}
                   onEditUsername={ (newUsername) => this.editUsername(i, newUsername) }
                   onEditPassword={ (newPassword) => this.editPassword(i, newPassword) }
@@ -252,10 +293,10 @@ export class PasswordList extends React.Component {
                 />
                 {/* Button should not be shown unless the edit button is clicked */}
                 <div>
-                  <button onClick={() => updateData(p)}>
+                  <Button theme="charcoal" onClick={() => updateData(p)}>
                     Update
-                  </button>
-                  <button onClick = {
+                  </Button>
+                  <Button theme="charcoal" onClick = {
                     () => {
                       deleteData(p); 
                       this.setState( _ => {
@@ -264,7 +305,7 @@ export class PasswordList extends React.Component {
                     }
                   }>
                     Delete
-                  </button>
+                  </Button>
                 </div>
               </Collapsible>
               <hr/>

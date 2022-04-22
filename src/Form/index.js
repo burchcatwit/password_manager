@@ -26,9 +26,9 @@ export const Form = ({ onSubmit }) => {
         <input type="password"
           className="form-control"
           id="pwd"
-	  name="pwd"
+          name="pwd"
           placeholder="***************"
-	  defaultValue={createPassword(15, true, true, true)}
+          defaultValue={createPassword(15, true, true, true)}
         />
       </div>
       <div className="form-group">
@@ -40,7 +40,7 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-	<input type="submit" value="Submit" />
+        <input type="submit" value="Submit" />
       </div>
     </form>
   );

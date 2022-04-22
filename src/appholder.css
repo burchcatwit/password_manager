@@ -19,7 +19,6 @@ h2 * {
   align-items: right;
 }
 .container {
-  
   background-color: hsl(220, 13%, 10%);
   min-height: 2em;
   display: flex;
@@ -28,7 +27,6 @@ h2 * {
   justify-content: space-between;
   font-size: calc(8px + 1vmin);
   color: white;
-  
 }
 
 .content{
@@ -49,7 +47,7 @@ h2 * {
 
 .nav-links * {
   list-style-type: none;
-  padding: 10px;
+  padding: 0px;
 }
 
 a {
