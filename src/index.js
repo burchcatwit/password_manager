@@ -8,7 +8,6 @@ import { NavHeader } from './appholder.js';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PasswordGenerator, PasswordList } from "./appholder.js";
 
-
 ReactDOM.render(
   <React.StrictMode>
     <Router>

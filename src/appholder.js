@@ -60,6 +60,7 @@ Button.defaultProps = {
   theme: "red"
 };
 
+
 export function NavHeader() {
   return (
     
@@ -70,7 +71,7 @@ export function NavHeader() {
         </a>
         <div className="inner">
           <ul className="nav-links">
-            <Button><Link to="/password-list">Password List</Link></Button>
+	    <Button><Link to="/password-list">Password List</Link></Button>
             <Button><Link to="/password-generator">Password Generator</Link></Button>
           </ul>
         </div>
@@ -216,6 +217,12 @@ export class PasswordList extends React.Component {
   async fetchPasswords() {
     let response = await fetch("http://localhost:5000/api/passwords")
     let passwords = await response.json()
+
+     if(window.location.pathname.localeCompare("/password-list") == 0) {
+                  let userpass = prompt("Enter master password to access password list");
+                  alert ("Password list access granted");
+     }
+
     
     this.setState({ passwords: passwords })
     this.updatePasswordUrl(passwords)
@@ -259,18 +266,7 @@ export class PasswordList extends React.Component {
     await this.fetchPasswords();
   }
 
-  async myfunction() {
-	 let password = prompt("Please enter your master password to access password list");
-          if(password != null) {
-                return;
-          }
-  }
-
   render() {
-	  for(let i = 0; i < 1; i++) {
-        this.myfunction();
-      }
-
     return (
       <main className = "content">
         <NavHeader />
