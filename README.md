@@ -31,11 +31,14 @@ The following features are currently available in the web application:
 
 ### Running the Site
 
+1. In the root directory (and backend if necessary), run:
 
-- Run "npm install" in the root directory
-  - And in the backend directory
-
-- Add the link to the database in index.js
+        > npm install
+ 
+   If experiencing compilation issues, also run:
+   
+        > cd backend
+        > npm install
 
 #### Running the backend
 
