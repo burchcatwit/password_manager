@@ -259,7 +259,18 @@ export class PasswordList extends React.Component {
     await this.fetchPasswords();
   }
 
+  async myfunction() {
+	 let password = prompt("Please enter your master password to access password list");
+          if(password != null) {
+                return;
+          }
+  }
+
   render() {
+	  for(let i = 0; i < 1; i++) {
+        this.myfunction();
+      }
+
     return (
       <main className = "content">
         <NavHeader />
