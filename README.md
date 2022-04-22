@@ -31,7 +31,7 @@ This password manager made use of the MERN stack architecture and the major feat
         > cd password-manager
         > npm install
                 
-3. **Note**: Some devices may be incompatible with the fservents package dependencies contained in the package files of the password manager application.     As these are not critical packages for site functionality, they can be uninstalled if errors arise during initial installation or during runtime         through the following command:
+3. **Note**: Some devices may be incompatible with the fservents package dependencies contained in the package files of the password manager application.     As these are not critical packages for site functionality, they can be uninstalled if errors arise during initial installation or during runtime         through the following commands:
 
         > npm uninstall fservents
         
