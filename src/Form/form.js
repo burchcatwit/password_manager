@@ -1,5 +1,5 @@
 import React from 'react';
-import { createPassword } from "../createPassword";
+import { createPassword } from "../passwordGenerators/createPassword";
 
 export const Form = ({ onSubmit }) => {
   return (
@@ -22,12 +22,17 @@ export const Form = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input
+        <label htmlFor="pwd">Password</label>
+        <input type="password"
           className="form-control"
-          id="password"
+          id="pwd"
+          name="pwd"
           placeholder="***************"
+<<<<<<< HEAD:src/Form/index.js
+          defaultValue={createPassword(15, true, true, true)}
+=======
 	  defaultValue={createPassword(15, true, true, true)} // add obfuscation here
+>>>>>>> main:src/Form/form.js
         />
       </div>
       <div className="form-group">
@@ -35,16 +40,14 @@ export const Form = ({ onSubmit }) => {
         <textarea
           className="form-control"
           id="otherNotes"
-          placeholder="Hi there,
-These are my notes"
+          placeholder="Hi there, These are my notes"
         />
       </div>
       <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit">
-          Submit
-        </button>
+        <input type="submit" value="Submit" />
       </div>
     </form>
   );
 };
+
 export default Form;

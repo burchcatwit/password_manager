@@ -1,0 +1,55 @@
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);;
+}
+
+.popup-inner{
+    position: relative;
+    display: grid;
+    grid-template-rows: 25% 50% 25%;
+    padding: 32px;
+    width: 50%;
+    height: 50%;
+    max-width: 640px;
+    background-color: black;
+    justify-content: center;
+
+}
+
+.popup-inner .close-btn{
+    position: absolute;
+    top:10px;
+    right:10px;
+    color:red
+}
+
+.create_account_section
+    {
+        color:white;
+        display: grid;
+        justify-content: center;
+    }
+
+
+
+.accountImage{
+
+    display: grid;
+    justify-content: center;
+}
+
+.App-AccountLogo {
+    height: 10vmin;
+    pointer-events: none;
+  }
+
+  li{
+        display: block;
+  }

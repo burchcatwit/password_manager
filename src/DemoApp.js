@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { useState } from "react";
 import Checkbox from "./Checkbox";
-import { createPassword } from "./createPassword";
+import { createPassword } from "./passwordGenerators/createPassword.js";
 import Collapsible from 'react-collapsible';
 import copy from "copy-to-clipboard";  
 import { Container } from './Container/container';
